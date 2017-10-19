@@ -1,0 +1,4 @@
+insert into product (name_p, price, image) values ('Samsung Galaxy J7 (2017) J730 Black', 8999, 'https://i2.rozetka.ua/goods/2045781/samsung_sm_j730fzknsek_images_2045781864.jpg');
+insert into product (name_p, price, image) values ('Nokia 5 Dual Sim Tempered Blue', 5999, 'https://i1.rozetka.ua/goods/1946757/nokia_5_ds_blue_images_1946757884.jpg');
+insert into product (name_p, price, image) values ('Apple iPhone 6s 64GB Space Gray', 13999, 'https://i2.rozetka.ua/goods/1890433/copy_apple_iphone7_256gb_gold_not_58d39e2e6e629_images_1890433884.jpg');
+insert into product (name_p, price, image) values ('Huawei P10 4/32GB (VTR-L29) Black', 14999, 'https://i2.rozetka.ua/goods/1894691/huawei_p10_images_1894691347.jpg');
