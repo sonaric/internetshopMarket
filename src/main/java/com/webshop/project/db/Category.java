@@ -1,6 +1,11 @@
 package com.webshop.project.db;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by stanislav on 18.10.17.
@@ -10,10 +15,9 @@ import javax.persistence.*;
 public class Category {
     private Long categoryId;
     private String image;
-    private Long parentId;
-    private boolean top;
     private boolean status;
     private CategoryDescription categoryDescription;
+    private List<GroupCategory> categoryList = new ArrayList<GroupCategory>();
 
 
     @Id
@@ -36,23 +40,6 @@ public class Category {
         this.image = image;
     }
 
-    @Column(name = "parent_id")
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    @Column(name = "top")
-    public boolean isTop() {
-        return top;
-    }
-
-    public void setTop(boolean top) {
-        this.top = top;
-    }
 
     @Column(name = "status")
     public boolean isStatus() {
@@ -71,5 +58,16 @@ public class Category {
 
     public void setCategoryDescription(CategoryDescription categoryDescription) {
         this.categoryDescription = categoryDescription;
+    }
+
+    @OneToMany(mappedBy = "category",
+    cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    public List<GroupCategory> getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(List<GroupCategory> categoryList) {
+        this.categoryList = categoryList;
     }
 }

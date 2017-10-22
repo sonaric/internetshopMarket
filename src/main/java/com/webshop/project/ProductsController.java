@@ -16,14 +16,18 @@ public class ProductsController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    CategoryRepository categoryRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel){
-        //uiModel.addAttribute("products",productService.findAll());
+        uiModel.addAttribute("categories",categoryRepository.findAll());
         return "products/list";
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String product(@PathVariable Long id, Model uiModel){
         uiModel.addAttribute("product",productService.findProductById(id));
+        uiModel.addAttribute("categories",categoryRepository.findAll());
         return "products/view";
     }
 }

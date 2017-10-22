@@ -1,5 +1,6 @@
 package com.webshop.project;
 
+import com.webshop.project.db.Category;
 import com.webshop.project.db.Product;
 import com.webshop.project.db.ProductImage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -24,6 +26,9 @@ public class ProductRestController {
 
     @Autowired
     ProductImageRepository imageRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @RequestMapping("/list")
     @ResponseBody
@@ -44,6 +49,16 @@ public class ProductRestController {
     @ResponseBody
     public List<ProductImage> images(@PathVariable long id){
         return imageRepository.findProductImageByProductId(id);
+    }
+
+    @RequestMapping("/category")
+    @ResponseBody
+    public List<Category> categories(){
+        List<Category> cat = categoryRepository.findAll();
+        System.out.println(cat.size());
+        System.out.println(cat.get(0).getCategoryList().size());
+        System.out.println(cat.get(0).getCategoryList().get(0).getSubCategories().size());
+        return cat;
     }
 
     private Comparator<Product> comparator(final char sortBy){
