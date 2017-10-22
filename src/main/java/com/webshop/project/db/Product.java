@@ -15,7 +15,8 @@ public class Product {
     private Long id;
     private int quantity;
     private String image;
-    private Long manufacturer_id;
+    //private Long manufacturer_id;
+    private Manufacturer manufacturer;
     private double price;
     private boolean starus;
     private int viewed;
@@ -50,13 +51,14 @@ public class Product {
         this.image = image;
     }
 
-    @Column(name = "manufacturer_id")
-    public Long getManufacturer_id() {
-        return manufacturer_id;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "manufacturer_id")
+    public Manufacturer getManufacturer() {
+        return manufacturer;
     }
 
-    public void setManufacturer_id(Long manufacturer_id) {
-        this.manufacturer_id = manufacturer_id;
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     @Column(name = "price")

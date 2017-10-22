@@ -3,6 +3,7 @@ package com.webshop.project;
 import com.webshop.project.db.Category;
 import com.webshop.project.db.Product;
 import com.webshop.project.db.ProductImage;
+import com.webshop.project.db.ProductToSubCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,9 @@ public class ProductRestController {
     ProductRepository productRepository;
 
     @Autowired
+    ProductCatalogRepository productCatalogRepository;
+
+    @Autowired
     ProductImageRepository imageRepository;
 
     @Autowired
@@ -32,9 +36,9 @@ public class ProductRestController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<Product> list(@RequestParam(value = "sort") String sortBy){
-        List<Product> products = productRepository.findAll();
-        if(sortBy.equals("none")){
+    public List<ProductToSubCategory> list(@RequestParam(value = "id") Long id, @RequestParam(value = "sort") String sortBy){
+        List<ProductToSubCategory> products = productCatalogRepository.findBySubcategoryId(id);
+        /*if(sortBy.equals("none")){
             return products;
         }else if(sortBy.equals("priceup")){
             Collections.sort(products,comparator('>'));
@@ -42,8 +46,11 @@ public class ProductRestController {
         }else if (sortBy.equals("pricedown")){
             Collections.sort(products,comparator('<'));
             return products;
-        }else return products;
+        }else return products;*/
+        return products;
     }
+
+
 
     @RequestMapping("/{id}")
     @ResponseBody

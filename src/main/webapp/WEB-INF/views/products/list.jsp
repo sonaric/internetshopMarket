@@ -11,21 +11,22 @@
     </div>
     <div class="row">
         <!----------------GOODS------------------>
-        <div class="col-md-3" ng-repeat="product in productData">
-            <div class="thumbnail">
+        <div class="col-md-3" ng-repeat="subcat in productData">
+            <div class="thumbnail" style="height:400px !important;">
+                <img src="{{subcat.product.manufacturer.image}}" alt="Lights" style="height: 40px; width: auto; margin-right: 5px;">
 
 
-                <a href="/products/{{product.id}}" target="_blank">
-                    <img src="{{product.image}}" alt="Lights" style="width:150px;">
+                <a href="/products/{{subcat.product.id}}" target="_blank">
+                    <img src="{{subcat.product.image}}" alt="Lights" style="height: 200px; width: auto;">
 
                 </a>
 
 
                 <div class="caption">
-                    <p><b>{{product.description.name}}</b></p>
+                    <p><b>{{subcat.product.description.name}}</b></p>
                 </div>
                 <div>
-                    <span class="alert alert-warning"><b style="color: black;">{{product.price}} uah</b></span>
+                    <span class="alert alert-warning"><b style="color: black;">{{subcat.product.price}} uah</b></span>
                     <button type="button" class="btn btn-success btn-lg">
                         <span class="glyphicon glyphicon-shopping-cart"></span>   Buy
                     </button>
@@ -40,13 +41,13 @@
     var appProduct = angular.module('productList',[]);
     appProduct.controller('productListCtrl',
     function ($scope, $http) {
-        $http.get('rest/products/list?sort=none').then(function (responce) {
+        $http.get('/rest/products/list?id=${id_category}&sort=none').then(function (responce) {
            $scope.productData=responce.data;
 
         });
 
         $scope.selectFilter=function () {
-            $http.get('rest/products/list?sort='+$scope.selectData).then(function (responce) {
+            $http.get('/rest/products/list?id=${id_category}&sort='+$scope.selectData).then(function (responce) {
                 $scope.productData=responce.data;
             });
         }

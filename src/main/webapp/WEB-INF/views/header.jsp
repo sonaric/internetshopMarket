@@ -64,7 +64,7 @@
                                             <div class="panel-body">
                                                 <ul class="w3-ul w3-normal">
                                                     <c:forEach items="${subcategory.getSubCategories()}" var="item">
-                                                        <li>${item.getName()}</li>
+                                                        <li><a href="/products/category?id=${item.id}">${item.getName()}</a></li>
                                                     </c:forEach>
                                                 </ul>
                                             </div>

@@ -8,4 +8,7 @@
     <definition extends="base" name="products/view">
         <put-attribute name="body" value="/WEB-INF/views/products/product.jsp" />
     </definition>
+    <definition extends="base" name="products/main">
+        <put-attribute name="body" value="/WEB-INF/views/products/main.jsp" />
+    </definition>
 </tiles-definitions>
