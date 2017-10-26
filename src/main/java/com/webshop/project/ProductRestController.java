@@ -4,6 +4,7 @@ import com.webshop.project.db.Category;
 import com.webshop.project.db.Product;
 import com.webshop.project.db.ProductImage;
 import com.webshop.project.db.ProductToSubCategory;
+import com.webshop.project.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +39,7 @@ public class ProductRestController {
     @ResponseBody
     public List<ProductToSubCategory> list(@RequestParam(value = "id") Long id, @RequestParam(value = "sort") String sortBy){
         List<ProductToSubCategory> products = productCatalogRepository.findBySubcategoryId(id);
-        /*if(sortBy.equals("none")){
+        if(sortBy.equals("none")){
             return products;
         }else if(sortBy.equals("priceup")){
             Collections.sort(products,comparator('>'));
@@ -46,8 +47,7 @@ public class ProductRestController {
         }else if (sortBy.equals("pricedown")){
             Collections.sort(products,comparator('<'));
             return products;
-        }else return products;*/
-        return products;
+        }else return products;
     }
 
 
@@ -62,25 +62,22 @@ public class ProductRestController {
     @ResponseBody
     public List<Category> categories(){
         List<Category> cat = categoryRepository.findAll();
-        System.out.println(cat.size());
-        System.out.println(cat.get(0).getCategoryList().size());
-        System.out.println(cat.get(0).getCategoryList().get(0).getSubCategories().size());
         return cat;
     }
 
-    private Comparator<Product> comparator(final char sortBy){
-        return new Comparator<Product>() {
-            public int compare(Product o1, Product o2) {
-                if(o1.getPrice() == o2.getPrice())
+    private Comparator<ProductToSubCategory> comparator(final char sortBy){
+        return new Comparator<ProductToSubCategory>() {
+            public int compare(ProductToSubCategory o1, ProductToSubCategory o2) {
+                if(o1.getProduct().getPrice() == o2.getProduct().getPrice())
                     return 0;
                 else {
                     switch (sortBy){
                         case '>':{
-                            if(o1.getPrice() > o2.getPrice())
+                            if(o1.getProduct().getPrice() > o2.getProduct().getPrice())
                                 return 1;
                             else return -1;}
                         case '<':{
-                            if(o1.getPrice() < o2.getPrice())
+                            if(o1.getProduct().getPrice() < o2.getProduct().getPrice())
                                 return 1;
                             else return -1;}
                         }

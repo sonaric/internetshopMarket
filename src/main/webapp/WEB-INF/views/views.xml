@@ -11,4 +11,13 @@
     <definition extends="base" name="products/main">
         <put-attribute name="body" value="/WEB-INF/views/products/main.jsp" />
     </definition>
+    <definition extends="base" name="registerForm">
+        <put-attribute name="body" value="/WEB-INF/views/users/registration.jsp" />
+    </definition>
+    <definition extends="base" name="errors/notFound">
+        <put-attribute name="body" value="/WEB-INF/views/errors/notFound.jsp" />
+    </definition>
+    <definition extends="base" name="profile">
+        <put-attribute name="body" value="/WEB-INF/views/users/profilePage.jsp" />
+    </definition>
 </tiles-definitions>
