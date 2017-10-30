@@ -6,7 +6,7 @@
     <h3>Find all that you need</h3>
 </div>
 <nav class="navbar navbar-default" data-spy="affix" data-offset-top="97">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
@@ -105,14 +105,14 @@
             </div>
 
             <div class="modal-body">
-                <form name="f" action="/products" method="post">
+                <form name="logInForm" action="/products" method="post">
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username" value="">
+                        <input type="text" class="form-control" id="username" name="username" value="" required>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" name="password">
+                        <input type="password" class="form-control" id="pwd" name="password" required>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
@@ -122,7 +122,7 @@
                     </div>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <button type="submit" class="w3-button w3-block w3-green w3-section w3-padding">LogIn</button>
-                    <a href="/auth/register" class="w3-button w3-block w3-red w3-section w3-padding">SignUp</a>
+                    <a href="/user/register" class="w3-button w3-block w3-red w3-section w3-padding">SignUp</a>
                 </form>
             </div>
 

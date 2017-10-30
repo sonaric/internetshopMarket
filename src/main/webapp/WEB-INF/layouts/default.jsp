@@ -24,7 +24,6 @@
             line-height: 1.42857143 !important;
             letter-spacing: 4px;
             border-radius: 0;
-            height: 70px;
         }
 
         .navbar li a, .navbar .navbar-brand {
