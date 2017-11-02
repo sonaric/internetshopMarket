@@ -17,7 +17,8 @@ public class User {
     private List<UserRoles> roles = new ArrayList<UserRoles>();
 
     @Id
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public String getUsername() {
         return username;
     }
